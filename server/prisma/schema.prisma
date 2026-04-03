@@ -1,0 +1,119 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String
+
+  memberships GroupMember[]
+
+  createdGroups Group[] @relation("UserGroups")
+
+  createdAt DateTime @default(now())
+}
+
+model Group {
+  id        String   @id @default(uuid())
+  name      String
+
+  createdBy String
+  creator   User     @relation("UserGroups", fields: [createdBy], references: [id])
+
+  members   GroupMember[]
+  expenses  Expense[]
+  settlements Settlement[] 
+
+  inviteToken   String?  @unique
+  inviteExpiry  DateTime?
+
+  createdAt DateTime @default(now())
+}
+
+model GroupMember {
+  id       String  @id @default(uuid())
+  name     String
+
+  userId   String? 
+  user     User?   @relation(fields: [userId], references: [id])
+
+  groupId  String
+  group    Group   @relation(fields: [groupId], references: [id])
+
+  role     Role    @default(MEMBER)
+
+  splits   Split[]
+  paidExpenses Expense[] @relation("PaidBy")
+
+  sentSettlements     Settlement[] @relation("FromMember")
+  receivedSettlements Settlement[] @relation("ToMember")
+
+  @@unique([userId, groupId])
+}
+
+model Expense {
+  id        String   @id @default(uuid())
+  title     String
+  amount    Decimal
+
+  groupId   String
+  group     Group    @relation(fields: [groupId], references: [id])
+
+  paidById  String
+  paidBy    GroupMember @relation("PaidBy", fields: [paidById], references: [id])
+
+  splits    Split[]
+
+  createdAt DateTime @default(now())
+}
+
+model Split {
+  id         String   @id @default(uuid())
+
+  expenseId  String
+  expense    Expense  @relation(fields: [expenseId], references: [id])
+
+  memberId   String
+  member     GroupMember @relation(fields: [memberId], references: [id])
+}
+
+model Settlement {
+  id        String   @id @default(uuid())
+
+  groupId   String
+  group     Group    @relation(fields: [groupId], references: [id])
+
+  fromId    String
+  toId      String
+
+  from      GroupMember @relation("FromMember", fields: [fromId], references: [id])
+  to        GroupMember @relation("ToMember", fields: [toId], references: [id])
+
+  amount    Decimal
+
+  status    SettlementStatus @default(PENDING)
+
+  createdAt DateTime @default(now())
+}
+
+enum Role {
+  ADMIN
+  MEMBER
+}
+
+enum SettlementStatus {
+  PENDING
+  SETTLED
+}
