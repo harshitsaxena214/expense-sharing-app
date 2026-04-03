@@ -131,3 +131,25 @@ export const createGhostUser = async (req: Request, res: Response) => {
     });
   }
 };
+
+export const getMyMembership = async (
+  req: AuthenticatedRequest,
+  res: Response,
+) => {
+  try {
+    const { groupId } = req.params as { groupId: string };
+    const userId = req.user!.id;
+
+    const member = await db.groupMember.findFirst({
+      where: { groupId, userId },
+    });
+
+    if (!member) {
+      return res.status(404).json({ success: false, message: "Not a member" });
+    }
+
+    return res.status(200).json({ success: true, member });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: "Server error" });
+  }
+};

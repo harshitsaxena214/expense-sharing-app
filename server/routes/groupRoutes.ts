@@ -3,6 +3,7 @@ import {
   createGhostUser,
   createGroup,
   getGroups,
+  getMyMembership,
 } from "../controllers/groupControllers.js";
 import { authMiddleware, isAdmin } from "../middlewares/authMiddleware.js";
 import {
@@ -26,6 +27,8 @@ groupRouter.post(
   createGroup,
 );
 groupRouter.get("/", authMiddleware, getGroups);
+groupRouter.get("/:groupId/me", authMiddleware, getMyMembership);
+
 groupRouter.post(
   "/:groupId/ghost",
   authMiddleware,
