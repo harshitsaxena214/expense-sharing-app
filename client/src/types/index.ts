@@ -37,6 +37,7 @@ export type Settlement = {
   to: Member;
   amount: number;
   status: "PENDING" | "SETTLED";
+  
 };
 
 export type BalanceSummary = {
@@ -51,3 +52,4 @@ export type InvitePreview = {
   memberCount: number;
   createdBy: string;
 };
+

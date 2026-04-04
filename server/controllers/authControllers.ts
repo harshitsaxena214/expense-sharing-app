@@ -40,9 +40,15 @@ export const registerUser = async (req: Request, res: Response) => {
       sameSite: "strict",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
-    return res
-      .status(201)
-      .json({ success: true, message: "User registered successfully" });
+    return res.status(201).json({
+      success: true,
+      message: "User registered successfully",
+      user: {
+        id: newUser.id,
+        email: newUser.email,
+        name: newUser.name,
+      },
+    });
   } catch (error: any) {
     console.log("Error SigningUp User", error);
     return res.status(500).json({

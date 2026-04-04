@@ -3,10 +3,17 @@ import authRouter from "./routes/authRoutes.js";
 import cookieParser from "cookie-parser";
 import groupRouter from "./routes/groupRoutes.js";
 import expenseRouter from "./routes/expenseRoutes.js";
+import cors from "cors";
 
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  }),
+);
 
 const port = 8000;
 
