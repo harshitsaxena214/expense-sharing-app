@@ -30,6 +30,8 @@ app.use("/api/auth", authRouter);
 app.use("/api/groups", groupRouter);
 app.use("/api/groups/:groupId/expenses", expenseRouter);
 
-app.listen(port, () => {
-  console.log(`Server is listening on port ${port}`);
-});
+if (process.env.NODE_ENV !== "production") {
+  app.listen(port, () => console.log(`Server running on port ${port}`));
+}
+
+export default app;
