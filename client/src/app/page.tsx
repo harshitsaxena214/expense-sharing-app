@@ -1,6 +1,15 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import { cookies } from "next/headers";
 
-export default function LandingPage() {
+export default async function LandingPage() {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("jwt");
+
+  if (token) {
+    redirect("/dashboard");
+  }
+
   return (
     <main className="min-h-screen bg-[#0a0a0f] text-white flex flex-col">
       <nav className="flex items-center justify-between px-8 py-4 border-b border-white/10">
