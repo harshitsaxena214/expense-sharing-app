@@ -11,18 +11,10 @@ export function proxy(request: NextRequest) {
     pathname.startsWith("/login") || pathname.startsWith("/signup");
   const isRoot = pathname === "/";
 
-  // ✅ Always allow invite pages through — before any auth logic
-  if (isInvite) {
-    return NextResponse.next();
-  }
+  if (isInvite) return NextResponse.next();
 
-  // Logged in + landing page or auth pages → go to dashboard
-  // ✅ But preserve redirectTo if it's present (e.g. coming back from invite)
+  // Logged in + auth page → redirect to dashboard directly, no redirectTo loop
   if (token && (isRoot || isAuthPage)) {
-    const redirectTo = request.nextUrl.searchParams.get("redirectTo");
-    if (redirectTo) {
-      return NextResponse.redirect(new URL(redirectTo, request.url));
-    }
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
 
@@ -37,5 +29,5 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|login|signup).*)"],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
 };
