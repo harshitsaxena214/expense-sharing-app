@@ -35,7 +35,7 @@ export const generateInviteLink = async (
   }
 };
 
-// ─── Preview Invite (show group info before joining) ──────────────────────────
+// Preview Invite (show group info before joining)
 export const previewInvite = async (
   req: AuthenticatedRequest,
   res: Response,
@@ -87,7 +87,7 @@ export const previewInvite = async (
   }
 };
 
-// ─── Join via Invite Token ─────────────────────────────────────────────────────
+// Join via Invite Token
 export const joinViaInvite = async (
   req: AuthenticatedRequest,
   res: Response,

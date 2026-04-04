@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -17,7 +17,6 @@ const schema = z.object({
 type Form = z.infer<typeof schema>;
 
 export default function SignupForm() {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const redirectTo = searchParams.get("redirectTo") ?? "/dashboard";
 
@@ -35,7 +34,7 @@ export default function SignupForm() {
       setError("");
       const res = await axios.post("/auth/register", data);
       setUser(res.data.user);
-      router.push(redirectTo);
+     window.location.assign(redirectTo);
     } catch (err: any) {
       setError(err.response?.data?.message ?? "Signup failed");
     }
