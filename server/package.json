@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "nodemon --exec tsx server.ts",
     "build": "prisma generate && tsc",
+    "vercel-build": "prisma generate && tsc",
     "start": "node dist/server.js"
   },
   "dependencies": {
