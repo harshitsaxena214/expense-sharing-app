@@ -6,13 +6,7 @@ import { useGroupStore } from "@/store/groupStore";
 import { useAuthStore } from "@/store/authStore";
 import CreateGroupModal from "@/components/groups/CreateGroupModal";
 import InviteModal from "@/components/groups/InviteModal";
-import {
-  Trash2,
-  Users,
-  LogOut,
-  ChevronRight,
-  Layers,
-} from "lucide-react";
+import { Trash2, Users, LogOut, ChevronRight } from "lucide-react";
 import axios from "@/lib/axios";
 
 export default function DashboardPage() {
@@ -33,12 +27,9 @@ export default function DashboardPage() {
   const handleLogout = async () => {
     try {
       await axios.post("/auth/logout");
-      localStorage.removeItem("token");
-      logout();
-      window.location.href = "/login";
     } catch (err) {
       console.error("Logout failed", err);
-      localStorage.removeItem("token");
+    } finally {
       logout();
       window.location.href = "/login";
     }
@@ -47,30 +38,27 @@ export default function DashboardPage() {
   return (
     <div className="min-h-screen bg-[#080810] text-white">
       {/* Navbar */}
-      <nav className="sticky top-0 z-50 flex items-center justify-between px-6 md:px-10 py-4 border-b border-white/[0.06] bg-[#080810]/80 backdrop-blur-xl">
-        <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center">
-            <Layers className="w-4 h-4 text-white" />
-          </div>
-          <span className="font-bold text-[15px]">
-            Split<span className="text-indigo-400">Ease</span>
+      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
+        <div className="container flex h-16 items-center justify-between">
+          <span className="font-display text-xl font-bold">
+            Split<span className="text-primary">Ease</span>
           </span>
-        </div>
 
-        <div className="flex items-center gap-2">
-          <CreateGroupModal />
-          <button
-            onClick={handleLogout}
-            className="flex items-center gap-2 px-3.5 py-2 rounded-xl text-sm font-medium text-gray-400 hover:text-red-400 hover:bg-red-500/10 border border-transparent hover:border-red-500/20 transition-all"
-          >
-            <LogOut className="w-4 h-4" />
-            <span className="hidden sm:inline">Logout</span>
-          </button>
+          <div className="flex items-center gap-4">
+            <CreateGroupModal />
+            <button
+              onClick={handleLogout}
+              className="flex items-center gap-2 px-3.5 py-2 rounded-xl text-sm font-medium text-muted-foreground hover:text-destructive hover:bg-destructive/10 border border-transparent hover:border-destructive/20 transition-all"
+            >
+              <LogOut className="w-4 h-4" />
+              <span className="hidden sm:inline">Logout</span>
+            </button>
+          </div>
         </div>
       </nav>
 
       {/* Main */}
-      <main className="max-w-5xl mx-auto px-6 md:px-10 py-10 flex flex-col gap-8">
+      <main className="max-w-5xl mx-auto px-6 md:px-10 py-10 flex flex-col gap-8 mt-16">
         <div>
           <h1 className="text-2xl font-bold">Dashboard</h1>
           <p className="text-gray-500 text-sm mt-1">

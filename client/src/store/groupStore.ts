@@ -56,7 +56,7 @@ export const useGroupStore = create<GroupStore>((set, get) => ({
     set((s) => ({ groups: [res.data.group, ...s.groups] }));
   },
 
-  // ── Group Detail ───────────────────────────────────────────────────────────
+  // Group Detail
   currentGroup: null,
   currentMember: null,
   expenses: [],
