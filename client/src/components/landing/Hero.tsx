@@ -26,7 +26,7 @@ const Hero = () => {
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-4 py-1.5 mb-6 md:mb-8">
-              <span className="h-2 w-2 rounded-full bg-primary" />
+              <span className="h-2 w-2 rounded-full bg-primary animate-ping" />
               <span className="text-xs font-medium tracking-wider uppercase text-muted-foreground">
                 Expense Splitting App
               </span>
@@ -36,7 +36,7 @@ const Hero = () => {
               settle with clarity.
             </h1>
             <p className="text-base md:text-lg text-muted-foreground max-w-lg mb-6 md:mb-8">
-              SplitEase helps groups track shared expenses effortlessly. Add
+              Settlix helps groups track shared expenses effortlessly. Add
               what you paid, and we calculate who owes whom — simple, fair, and
               transparent.
             </p>

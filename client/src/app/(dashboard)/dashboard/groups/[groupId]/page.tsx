@@ -49,7 +49,7 @@ export default function GroupDetailPage() {
           <ArrowLeft className="w-4 h-4" /> Back
         </button>
         <span className="font-bold text-lg">
-          Split<span className="text-indigo-400">Ease</span>
+          Sett<span className="text-indigo-400">Lix</span>
         </span>
         <div className="w-16" />
       </nav>

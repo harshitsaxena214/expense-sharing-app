@@ -41,7 +41,7 @@ export default function DashboardPage() {
       <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
         <div className="container flex h-16 items-center justify-between">
           <span className="font-display text-xl font-bold">
-            Split<span className="text-primary">Ease</span>
+            Sett<span className="text-primary">Lix</span>
           </span>
 
           <div className="flex items-center gap-4">
