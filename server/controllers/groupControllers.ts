@@ -153,3 +153,35 @@ export const getMyMembership = async (
     return res.status(500).json({ success: false, message: "Server error" });
   }
 };
+
+export const deleteGroup = async (req: AuthenticatedRequest, res: Response) => {
+  try {
+    const { groupId } = req.params as { groupId: string };
+    const userId = req.user!.id;
+
+    const group = await db.group.findUnique({
+      where: { id: groupId },
+    });
+    if (!group) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Group Not Found" });
+    }
+    if (group.createdBy !== userId) {
+      return res
+        .status(403)
+        .json({ success: false, message: "Only Admin can delete the group" });
+    }
+
+    await db.group.delete({
+      where: { id: groupId },
+    });
+
+    return res.status(200).json({
+      success: true,
+      message: "Group deleted successfully",
+    });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: "Server error" });
+  }
+};

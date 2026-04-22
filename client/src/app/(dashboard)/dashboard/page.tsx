@@ -97,12 +97,14 @@ export default function DashboardPage() {
                       {group.members.length !== 1 ? "s" : ""}
                     </p>
                   </div>
-                  <button
-                    onClick={(e) => deleteGroup(e, group.id)}
-                    className="opacity-0 group-hover/card:opacity-100 p-1.5 rounded-lg text-gray-600 hover:text-red-400 hover:bg-red-500/10 transition-all"
-                  >
-                    <Trash2 className="w-3.5 h-3.5" />
-                  </button>
+                  {group.createdBy === user?.id && (
+                    <button
+                      onClick={(e) => deleteGroup(e, group.id)}
+                      className="opacity-0 group-hover/card:opacity-100 p-1.5 rounded-lg text-gray-600 hover:text-red-400 hover:bg-red-500/10 transition-all"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </button>
+                  )}
                 </div>
 
                 {/* Member avatars */}

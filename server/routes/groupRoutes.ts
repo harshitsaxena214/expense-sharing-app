@@ -2,6 +2,7 @@ import express from "express";
 import {
   createGhostUser,
   createGroup,
+  deleteGroup,
   getGroups,
   getMyMembership,
 } from "../controllers/groupControllers.js";
@@ -49,6 +50,8 @@ groupRouter.delete(
   isAdmin,
   revokeInviteLink,
 );
+
+groupRouter.delete("/:groupId", authMiddleware, isAdmin, deleteGroup);
 
 groupRouter.get("/invite/:inviteToken", authMiddleware, previewInvite);
 groupRouter.post("/invite/:inviteToken/join", authMiddleware, joinViaInvite);
