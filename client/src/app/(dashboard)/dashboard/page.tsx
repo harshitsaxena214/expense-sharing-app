@@ -16,12 +16,12 @@ export default function DashboardPage() {
 
   useEffect(() => {
     fetchGroups();
-  }, []);
+  }, [fetchGroups]);
 
   const deleteGroup = async (e: React.MouseEvent, groupId: string) => {
     e.stopPropagation();
     await axios.delete(`/groups/${groupId}`);
-    fetchGroups();
+    await fetchGroups();
   };
 
   const handleLogout = async () => {
