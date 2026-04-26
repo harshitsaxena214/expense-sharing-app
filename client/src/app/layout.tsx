@@ -5,6 +5,27 @@ import { AuthHydration } from "@/components/AuthHydration";
 export const metadata: Metadata = {
   title: "Settlix - Simplify Group Expenses",
   description: "Split expenses with ease, settle with clarity",
+  metadataBase: new URL("https://settlix.vercel.app"),
+
+  openGraph: {
+    title: "Settlix — Expense Splitting, Simplified",
+    description:
+      "Add expenses, split with friends, and settle up instantly. No spreadsheets, no drama — just clear balances.",
+    type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Settlix — Expense Splitting App",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@settlix",
+    images: ["/og-image.png"],
+  },
 };
 
 export default function RootLayout({
