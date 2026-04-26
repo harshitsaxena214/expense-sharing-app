@@ -60,7 +60,7 @@ export default function SettlementsPage() {
           <ArrowLeft className="w-4 h-4" /> Back to Group
         </button>
         <span className="font-bold text-lg">
-          Split<span className="text-indigo-400">Ease</span>
+          Sett<span className="text-indigo-400">Lix</span>
         </span>
         <div className="w-24" />
       </nav>
@@ -106,7 +106,7 @@ export default function SettlementsPage() {
                 {pending.map((s) => {
                   const isDebtor = s.fromId === currentMember?.id;
                   const isAdmin = currentMember?.role === "ADMIN";
-                  const canSettle = isDebtor || isAdmin;
+                  const canSettle = isDebtor || isAdmin;2
 
                   return (
                     <div
