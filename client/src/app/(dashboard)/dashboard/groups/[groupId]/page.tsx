@@ -41,7 +41,7 @@ export default function GroupDetailPage() {
   return (
     <div className="min-h-screen bg-[#0a0a0f] text-white">
       {/* Navbar */}
-      <nav className="flex items-center justify-between px-8 py-4 border-b border-white/10">
+      <nav className="flex items-center justify-between px-4 sm:px-8 py-4 border-b border-white/10">
         <button
           onClick={() => router.push("/dashboard")}
           className="flex items-center gap-2 text-gray-400 hover:text-white text-sm transition-colors"
@@ -54,17 +54,17 @@ export default function GroupDetailPage() {
         <div className="w-16" />
       </nav>
 
-      <div className="max-w-5xl mx-auto px-8 py-10 flex flex-col gap-8">
+      <div className="max-w-5xl mx-auto px-4 sm:px-8 py-6 sm:py-10 flex flex-col gap-6 sm:gap-8">
         {/* Header */}
-        <div className="flex items-start justify-between gap-4">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div>
-            <h1 className="text-3xl font-bold">{currentGroup.name}</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold">{currentGroup.name}</h1>
             <p className="text-gray-400 text-sm mt-1">
               {currentGroup.members.length} member
               {currentGroup.members.length !== 1 ? "s" : ""}
             </p>
           </div>
-          <div className="flex items-center gap-2 flex-wrap justify-end">
+          <div className="flex items-center gap-2 flex-wrap">
             {isAdmin && <AddGhostMemberModal groupId={groupId} />}
             <AddExpenseModal
               groupId={groupId}
@@ -98,7 +98,6 @@ export default function GroupDetailPage() {
                   {m.name[0]}
                 </div>
                 <span className="text-sm text-gray-300">{m.name}</span>
-                {/* ghost badge */}
                 {!m.userId && (
                   <span className="text-[10px] text-gray-600 bg-white/5 px-1.5 py-0.5 rounded-full border border-white/10">
                     offline
@@ -110,7 +109,7 @@ export default function GroupDetailPage() {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-3 gap-2 sm:gap-4">
           {[
             { label: "Total Expenses", value: `₹${totalExpenses.toFixed(2)}` },
             { label: "Per Person", value: `₹${perPerson.toFixed(2)}` },
@@ -118,10 +117,10 @@ export default function GroupDetailPage() {
           ].map((stat) => (
             <div
               key={stat.label}
-              className="bg-[#13131a] border border-white/10 rounded-2xl p-5"
+              className="bg-[#13131a] border border-white/10 rounded-2xl p-3 sm:p-5"
             >
-              <p className="text-gray-400 text-sm">{stat.label}</p>
-              <p className="text-2xl font-bold mt-1">{stat.value}</p>
+              <p className="text-gray-400 text-xs sm:text-sm">{stat.label}</p>
+              <p className="text-lg sm:text-2xl font-bold mt-1 break-all">{stat.value}</p>
             </div>
           ))}
         </div>
@@ -149,16 +148,16 @@ export default function GroupDetailPage() {
               {expenses.map((expense) => (
                 <div
                   key={expense.id}
-                  className="bg-[#13131a] border border-white/10 rounded-2xl p-4 flex items-center justify-between"
+                  className="bg-[#13131a] border border-white/10 rounded-2xl p-4 flex items-center justify-between gap-3"
                 >
-                  <div>
-                    <p className="font-medium">{expense.title}</p>
-                    <p className="text-gray-400 text-xs mt-0.5">
+                  <div className="min-w-0">
+                    <p className="font-medium truncate">{expense.title}</p>
+                    <p className="text-gray-400 text-xs mt-0.5 truncate">
                       Paid by {expense.paidBy.name} · split{" "}
                       {expense.splits.length} ways
                     </p>
                   </div>
-                  <p className="font-semibold text-lg">
+                  <p className="font-semibold text-base sm:text-lg shrink-0">
                     ₹{Number(expense.amount).toFixed(2)}
                   </p>
                 </div>
