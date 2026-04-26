@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://settlix.vercel.app"),
 
   openGraph: {
-    title: "Settlix — Expense Splitting, Simplified",
+    title: "Settlix - Expense Splitting, Simplified",
     description:
-      "Add expenses, split with friends, and settle up instantly. No spreadsheets, no drama — just clear balances.",
+      "Add expenses, split with friends, and settle up instantly. No spreadsheets, no drama - just clear balances.",
     type: "website",
     images: [
       {
-        url: "/og-image.png",
+        url: "https://settlix.vercel.app/og-image.png",
         width: 1200,
         height: 630,
         alt: "Settlix — Expense Splitting App",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     site: "@settlix",
-    images: ["/og-image.png"],
+    images: ["https://settlix.vercel.app/og-image.png"],
   },
 };
 
