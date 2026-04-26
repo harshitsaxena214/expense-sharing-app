@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { AuthHydration } from "@/components/AuthHydration";  // ← add this
+import { AuthHydration } from "@/components/AuthHydration";
 
 export const metadata: Metadata = {
-  title: "SplitEase",
+  title: "Settlix - Simplify Group Expenses",
   description: "Split expenses with ease, settle with clarity",
 };
 
