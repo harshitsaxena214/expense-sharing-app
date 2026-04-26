@@ -69,7 +69,7 @@ model Expense {
   amount    Decimal
 
   groupId   String
-  group     Group    @relation(fields: [groupId], references: [id])
+  group     Group    @relation(fields: [groupId], references: [id], onDelete: Cascade)
 
   paidById  String
   paidBy    GroupMember @relation("PaidBy", fields: [paidById], references: [id])
