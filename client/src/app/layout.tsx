@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://settlix.vercel.app/og-image.png",
+        url: "https://settlix.vercel.app/preview.png",
         width: 1200,
         height: 630,
         alt: "Settlix — Expense Splitting App",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     site: "@settlix",
-    images: ["https://settlix.vercel.app/og-image.png"],
+    images: ["https://settlix.vercel.app/preview.png"],
   },
 };
 
