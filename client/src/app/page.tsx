@@ -6,10 +6,12 @@ import HowItWorks from "@/components/landing/HowItWorks";
 import Security from "@/components/landing/Security";
 import CTA from "@/components/landing/CTA";
 import Footer from "@/components/landing/Footer";
+import LandingRedirect from "@/components/landing/LandingRedirect";
 
 export default function LandingPage() {
   return (
     <main className="min-h-screen">
+      <LandingRedirect />
       <Navbar />
       <Hero />
       <TrustBar />
